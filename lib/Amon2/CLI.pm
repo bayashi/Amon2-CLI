@@ -1,15 +1,23 @@
 package Amon2::CLI;
 use strict;
 use warnings;
-use Carp qw/croak/;
 
 our $VERSION = '0.01';
 
-sub new {
-    my $class = shift;
-    my $args  = shift || +{};
+sub import {
+    my ($self, $app_class, $cli_class) = @_;
 
-    bless $args, $class;
+    if ($app_class) {
+        my $file = $app_class;
+        $file =~ s!::!/!g;
+        require "$file.pm"; ## no critic
+        $app_class->import;
+        $app_class->load_plugins(
+            'CLI' => {
+                base => $cli_class || "${app_class}::CLI",
+            },
+        );
+    }
 }
 
 1;
@@ -20,17 +28,54 @@ __END__
 
 =head1 NAME
 
-Amon2::CLI - one line description
+Amon2::CLI - The way of CLI for Amon2 App
 
 
 =head1 SYNOPSIS
 
-    use Amon2::CLI;
+First of all, in your MyApp class
+
+    package MyApp;
+    use strict;
+    use warnings;
+    use parent qw/Amon2/;
+
+    1;
+
+Then in your MyApp::CLI::Foo class
+
+    package MyApp::CLI::Foo;
+    use strict;
+    use warnings;
+
+    sub main {
+        my ($class, $c) = @_;
+        # do something
+        print 'done!';
+    }
+
+    1;
+
+Finally, in your script
+
+    use Amon2::CLI 'MyApp';
+
+    MyApp->bootstrap->run('Foo'); # done!
+
+Or directly,
+
+    use Amon2::CLI 'MyApp';
+
+    MyApp->bootstrap->run(sub{
+        my ($c) = @_;
+        # do something
+        print 'kaboom!';
+    });
 
 
 =head1 DESCRIPTION
 
-Amon2::CLI is
+Amon2::CLI is B<ALPHA QUALITY>. B<I may change interfaces without a notice>.
 
 
 =head1 REPOSITORY
@@ -53,7 +98,9 @@ Dai Okabayashi E<lt>bayashi@cpan.orgE<gt>
 
 =head1 SEE ALSO
 
-L<Other::Module>
+L<Amon2::Plugin::CLI>
+
+L<Amon2>
 
 
 =head1 LICENSE

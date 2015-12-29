@@ -1,6 +1,11 @@
 use strict;
-use Test::More tests => 1;
+use Test::More;
 
 BEGIN {
-    use_ok 'Amon2::CLI';
+    use_ok $_ for qw/
+        Amon2::CLI
+        Amon2::Plugin::CLI
+    /;
 }
+
+done_testing;

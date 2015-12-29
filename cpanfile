@@ -2,6 +2,10 @@ requires 'perl', '5.008005';
 requires 'strict';
 requires 'warnings';
 requires 'Carp';
+requires 'Amon2::Util';
+requires 'Plack::Util';
+requires 'Getopt::Long';
+requires 'Pod::Usage';
 
 on 'test' => sub {
     requires 'Test::More', '0.88';
