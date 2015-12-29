@@ -2,7 +2,7 @@ package Amon2::CLI;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub import {
     my ($self, $app_class, $cli_class) = @_;
@@ -139,7 +139,7 @@ The key string for keeping CLI options in context
 
 =head2 Handling CLI Options
 
-In default, you can get CLI options '--baz' like below
+By default, you can get CLI options '--baz' like below
 
     sub main {
         my ($class, $c) = @_;
@@ -164,7 +164,7 @@ B<getopt> method gets a value of options. To get all options when you call C<get
 
 =begin html
 
-<a href="http://travis-ci.org/bayashi/Amon2-CLI"><img src="https://secure.travis-ci.org/bayashi/Amon2-CLI.png"/></a> <a href="https://coveralls.io/r/bayashi/Amon2-CLI"><img src="https://coveralls.io/repos/bayashi/Amon2-CLI/badge.png?branch=master"/></a>
+<a href="http://travis-ci.org/bayashi/Amon2-CLI"><img src="https://secure.travis-ci.org/bayashi/Amon2-CLI.png?_t=1451381547"/></a> <a href="https://coveralls.io/r/bayashi/Amon2-CLI"><img src="https://coveralls.io/repos/bayashi/Amon2-CLI/badge.png?_t=1451381547&branch=master"/></a>
 
 =end html
 

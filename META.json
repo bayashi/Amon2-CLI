@@ -1,5 +1,5 @@
 {
-   "abstract" : "CLI invoker for Amon2 App",
+   "abstract" : "The way of CLI for Amon2 App",
    "author" : [
       "Dai Okabayashi <bayashi@cpan.org>"
    ],
@@ -40,14 +40,15 @@
       },
       "test" : {
          "requires" : {
-            "Test::More" : "0.88"
+            "Test::More" : "0.88",
+            "Test::Output" : "0"
          }
       }
    },
    "provides" : {
       "Amon2::CLI" : {
          "file" : "lib/Amon2/CLI.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       },
       "Amon2::Plugin::CLI" : {
          "file" : "lib/Amon2/Plugin/CLI.pm"
@@ -69,6 +70,6 @@
          "web" : "http://webchat.freenode.net/?channels=%23bayadev"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_serialization_backend" : "JSON::PP version 2.27300"
 }
