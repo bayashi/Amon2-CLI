@@ -9,6 +9,7 @@ requires 'Pod::Usage';
 
 on 'test' => sub {
     requires 'Test::More', '0.88';
+    requires 'Test::Output';
 };
 
 on 'configure' => sub {
