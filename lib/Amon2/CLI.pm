@@ -87,6 +87,7 @@ You can write your own C<MyApp::CLI> class for customizing the way instead of C<
     package MyApp::CLI;
     use strict;
     use warnings;
+    use parent qw/Amon2/;
     use MyApp::Logger;
 
     __PACKAGE__->load_plugins(
