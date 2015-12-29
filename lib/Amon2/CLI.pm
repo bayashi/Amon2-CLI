@@ -77,6 +77,64 @@ Or directly,
 
 Amon2::CLI is B<ALPHA QUALITY>. B<I may change interfaces without a notice>.
 
+This module gives you the easy way of CLI for Amon2 App. It handles to load class, to get options and to throw error.
+
+
+=head1 CONFIGURE PLUGIN
+
+You can write your own C<MyApp::CLI> class for customizing the way instead of C<Amon2::CLI>.
+
+    package MyApp::CLI;
+    use strict;
+    use warnings;
+    use MyApp::Logger;
+
+    __PACKAGE__->load_plugins(
+        'CLI' => {
+            base => 'MyApp::CLI',
+            on_error => sub {
+                my ($c, $e) = @_;
+                MyApp::Logger->write('path/to/log', $e);
+            },
+        },
+    );
+
+And in your script
+
+    use MyApp::CLI;
+
+    MyApp->bootstrap->run(sub{
+        my ($c) = @_;
+        # do something
+        print 'OK!';
+    });
+
+=head2 PLUGIN OPTIONS
+
+=head3 base
+
+The base class name
+
+=head3 on_error
+
+The code ref for handling error
+
+=head3 method // 'main'
+
+The name of method in class for script
+
+=head3 run_method // 'run'
+
+The name of method on $c for invoking CLI script
+
+=head3 getopt // [qw/:config posix_default no_ignore_case gnu_compat/]
+
+The options string for L<Getopt::Long>
+
+=head3 cli_opt_key
+
+The key string for keeping CLI options in context
+
 
 =head1 REPOSITORY
 
