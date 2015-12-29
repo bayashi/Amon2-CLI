@@ -137,6 +137,29 @@ The options string for L<Getopt::Long>
 The key string for keeping CLI options in context
 
 
+=head2 Handling CLI Options
+
+In default, you can get CLI options '--baz' like below
+
+    sub main {
+        my ($class, $c) = @_;
+
+        my $opt;
+
+        $c->parse_opt(
+            'baz' => \$opt->{baz},
+        )->setopt($opt);
+
+        print 'OK!' if $c->getopt('baz');
+    }
+
+B<parse_opt> method requires hash arguments which is same as GetOptions arguments of L<Getopt::Long>.
+
+B<setopt> method sets an argument in context.
+
+B<getopt> method gets a value of options. To get all options when you call C<getopt> method without args.
+
+
 =head1 REPOSITORY
 
 =begin html
