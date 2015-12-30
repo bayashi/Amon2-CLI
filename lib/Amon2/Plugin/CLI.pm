@@ -47,7 +47,6 @@ sub init {
         }
     });
 
-
     add_method($c => 'show_usage', sub {
         my ($self, %args) = @_;
 
