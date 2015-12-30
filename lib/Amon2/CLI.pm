@@ -104,7 +104,7 @@ And in your script
 
     use MyApp::CLI;
 
-    MyApp->bootstrap->run(sub{
+    MyApp::CLI->bootstrap->run(sub{
         my ($c) = @_;
         # do something
         print 'OK!';
