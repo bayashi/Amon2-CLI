@@ -16,9 +16,7 @@ sub init {
 
     my $run_method = $code_conf->{run_method} || 'run';
 
-    my $getopt = $code_conf->{getopt} || [qw/:config posix_default no_ignore_case gnu_compat/];
-    require Getopt::Long;
-    Getopt::Long->import(@{$getopt});
+    _load_getopt_long($code_conf->{getopt});
 
     add_method($c => $run_method, sub {
         my ($c, $arg) = @_;
@@ -96,6 +94,13 @@ sub init {
 
         return $c->{$CLI_OPT_KEY}{$opt_key};
     });
+}
+
+sub _load_getopt_long {
+    my $getopt = shift || [qw/:config posix_default no_ignore_case gnu_compat/];
+
+    require Getopt::Long;
+    Getopt::Long->import(@{$getopt});
 }
 
 sub _croak {
