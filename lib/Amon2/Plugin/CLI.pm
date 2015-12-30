@@ -48,26 +48,7 @@ sub init {
     });
 
     add_method($c => 'show_usage', \&_show_usage);
-
-    add_method($c => 'parse_opt', sub {
-        my ($c, %options) = @_;
-
-        my @cli_args = @ARGV; # save @ARGV
-
-        Getopt::Long::GetOptionsFromArray(
-            \@cli_args,
-            %options,
-            'h' => sub {
-                $c->show_usage(-exitval => 1);
-            },
-            'help' => sub {
-                $c->show_usage(-exitval => 1, -verbose => 2);
-            },
-        ) or $c->show_usage(-exitval => 2);
-
-        return $c;
-    });
-
+    add_method($c => 'parse_opt', \&_parse_opt);
     add_method($c => 'setopt', \&_setopt);
     add_method($c => 'getopt', \&_getopt);
 }
@@ -84,6 +65,25 @@ sub _show_usage {
 
     require Pod::Usage;
     Pod::Usage::pod2usage(%args);
+}
+
+sub _parse_opt {
+    my ($c, %options) = @_;
+
+    my @cli_args = @ARGV; # save @ARGV
+
+    Getopt::Long::GetOptionsFromArray(
+        \@cli_args,
+        %options,
+        'h' => sub {
+            $c->show_usage(-exitval => 1);
+        },
+        'help' => sub {
+            $c->show_usage(-exitval => 1, -verbose => 2);
+        },
+    ) or $c->show_usage(-exitval => 2);
+
+    return $c;
 }
 
 sub _setopt {
