@@ -18,7 +18,25 @@ sub init {
 
     _load_getopt_long($code_conf->{getopt});
 
-    add_method($c => $run_method, sub {
+    add_method($c => $run_method, _run($code_conf));
+
+    add_method($c => 'show_usage', \&_show_usage);
+    add_method($c => 'parse_opt',  \&_parse_opt);
+    add_method($c => 'setopt',     \&_setopt);
+    add_method($c => 'getopt',     \&_getopt);
+}
+
+sub _load_getopt_long {
+    my $getopt = shift || [qw/:config posix_default no_ignore_case gnu_compat/];
+
+    require Getopt::Long;
+    Getopt::Long->import(@{$getopt});
+}
+
+sub _run {
+    my $code_conf = shift;
+
+    return sub {
         my ($c, $arg) = @_;
 
         eval {
@@ -45,19 +63,7 @@ sub init {
                 _croak("$0\t$e");
             }
         }
-    });
-
-    add_method($c => 'show_usage', \&_show_usage);
-    add_method($c => 'parse_opt',  \&_parse_opt);
-    add_method($c => 'setopt',     \&_setopt);
-    add_method($c => 'getopt',     \&_getopt);
-}
-
-sub _load_getopt_long {
-    my $getopt = shift || [qw/:config posix_default no_ignore_case gnu_compat/];
-
-    require Getopt::Long;
-    Getopt::Long->import(@{$getopt});
+    };
 }
 
 sub _show_usage {
