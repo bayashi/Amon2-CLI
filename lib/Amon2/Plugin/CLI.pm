@@ -47,12 +47,7 @@ sub init {
         }
     });
 
-    add_method($c => 'show_usage', sub {
-        my ($self, %args) = @_;
-
-        require Pod::Usage;
-        Pod::Usage::pod2usage(%args);
-    });
+    add_method($c => 'show_usage', \&_show_usage);
 
     add_method($c => 'parse_opt', sub {
         my ($c, %options) = @_;
@@ -99,6 +94,13 @@ sub _load_getopt_long {
 
     require Getopt::Long;
     Getopt::Long->import(@{$getopt});
+}
+
+sub _show_usage {
+    my ($self, %args) = @_;
+
+    require Pod::Usage;
+    Pod::Usage::pod2usage(%args);
 }
 
 sub _croak {
