@@ -29,8 +29,7 @@ sub init {
                 $arg->($c);
             }
             else {
-                my $klass  = $arg;
-                my $runner = Plack::Util::load_class($klass, $code_conf->{base});
+                my $runner = Plack::Util::load_class($arg, $code_conf->{base});
                 my $method = $code_conf->{method} || 'main';
                 $runner->$method($c);
             }
