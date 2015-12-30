@@ -48,9 +48,9 @@ sub init {
     });
 
     add_method($c => 'show_usage', \&_show_usage);
-    add_method($c => 'parse_opt', \&_parse_opt);
-    add_method($c => 'setopt', \&_setopt);
-    add_method($c => 'getopt', \&_getopt);
+    add_method($c => 'parse_opt',  \&_parse_opt);
+    add_method($c => 'setopt',     \&_setopt);
+    add_method($c => 'getopt',     \&_getopt);
 }
 
 sub _load_getopt_long {
