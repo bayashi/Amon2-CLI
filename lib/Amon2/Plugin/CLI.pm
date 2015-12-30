@@ -14,11 +14,9 @@ sub init {
         $CLI_OPT_KEY = $code_conf->{cli_opt_key};
     }
 
-    my $run_method = $code_conf->{run_method} || 'run';
-
     _load_getopt_long($code_conf->{getopt});
 
-    add_method($c => $run_method, _run($code_conf));
+    add_method($c => ($code_conf->{run_method} || 'run'), _run($code_conf));
 
     add_method($c => 'show_usage', \&_show_usage);
     add_method($c => 'parse_opt',  \&_parse_opt);
