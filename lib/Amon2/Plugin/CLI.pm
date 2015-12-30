@@ -68,25 +68,8 @@ sub init {
         return $c;
     });
 
-    add_method($c => 'setopt', sub {
-        my ($c, $opt) = @_;
-
-        _croak('$opt is not HASH') unless ref $opt eq 'HASH';
-
-        $c->{$CLI_OPT_KEY} = $opt;
-
-        return $c;
-    });
-
-    add_method($c => 'getopt', sub {
-        my ($c, $opt_key) = @_;
-
-        if (!defined $opt_key || $opt_key eq '') {
-            return $c->{$CLI_OPT_KEY};
-        }
-
-        return $c->{$CLI_OPT_KEY}{$opt_key};
-    });
+    add_method($c => 'setopt', \&_setopt);
+    add_method($c => 'getopt', \&_getopt);
 }
 
 sub _load_getopt_long {
@@ -101,6 +84,26 @@ sub _show_usage {
 
     require Pod::Usage;
     Pod::Usage::pod2usage(%args);
+}
+
+sub _setopt {
+    my ($c, $opt) = @_;
+
+    _croak('$opt is not HASH') unless ref $opt eq 'HASH';
+
+    $c->{$CLI_OPT_KEY} = $opt;
+
+    return $c;
+}
+
+sub _getopt {
+    my ($c, $opt_key) = @_;
+
+    if (!defined $opt_key || $opt_key eq '') {
+        return $c->{$CLI_OPT_KEY};
+    }
+
+    return $c->{$CLI_OPT_KEY}{$opt_key};
 }
 
 sub _croak {
