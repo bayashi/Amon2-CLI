@@ -24,6 +24,9 @@ sub init {
         my ($c, $arg) = @_;
 
         eval {
+            if (my $before_run = $code_conf->{before_run}) {
+                $before_run->($c, $arg);
+            }
             if (ref $arg eq 'CODE') {
                 $arg->($c);
             }
@@ -32,6 +35,9 @@ sub init {
                 my $runner = Plack::Util::load_class($klass, $code_conf->{base});
                 my $method = $code_conf->{method} || 'main';
                 $runner->$method($c);
+            }
+            if (my $after_run = $code_conf->{after_run}) {
+                $after_run->($c, $arg);
             }
         };
         if (my $e = $@) {

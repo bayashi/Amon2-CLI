@@ -120,6 +120,14 @@ The base class name
 
 The code ref for handling error
 
+=head3 before_run
+
+The code ref which is invoked before running main method
+
+=head3 after_run
+
+The code ref which is invoked after running main method
+
 =head3 method // 'main'
 
 The name of method in class for script
