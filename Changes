@@ -1,5 +1,8 @@
 Revision history for Perl extension Amon2::CLI
 
+0.04    Mon Jan  4 16:34:17 JST 2016
+        - fix POD
+
 0.03    Wed Dec 30 16:35:23 JST 2015
         - add hooks: before_run and after_run
         - refactor

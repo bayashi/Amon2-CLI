@@ -2,7 +2,7 @@ package Amon2::CLI;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 sub import {
     my ($self, $app_class, $cli_class) = @_;
@@ -172,7 +172,7 @@ B<getopt> method gets a value of options. To get all options when you call C<get
 
 =begin html
 
-<a href="http://travis-ci.org/bayashi/Amon2-CLI"><img src="https://secure.travis-ci.org/bayashi/Amon2-CLI.png?_t=1451460974"/></a> <a href="https://coveralls.io/r/bayashi/Amon2-CLI"><img src="https://coveralls.io/repos/bayashi/Amon2-CLI/badge.png?_t=1451460974&branch=master"/></a>
+<a href="http://travis-ci.org/bayashi/Amon2-CLI"><img src="https://secure.travis-ci.org/bayashi/Amon2-CLI.png?_t=1451892884"/></a> <a href="https://coveralls.io/r/bayashi/Amon2-CLI"><img src="https://coveralls.io/repos/bayashi/Amon2-CLI/badge.png?_t=1451892884&branch=master"/></a>
 
 =end html
 

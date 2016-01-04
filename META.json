@@ -48,7 +48,7 @@
    "provides" : {
       "Amon2::CLI" : {
          "file" : "lib/Amon2/CLI.pm",
-         "version" : "0.03"
+         "version" : "0.04"
       },
       "Amon2::Plugin::CLI" : {
          "file" : "lib/Amon2/Plugin/CLI.pm"
@@ -70,6 +70,6 @@
          "web" : "http://webchat.freenode.net/?channels=%23bayadev"
       }
    },
-   "version" : "0.03",
+   "version" : "0.04",
    "x_serialization_backend" : "JSON::PP version 2.27300"
 }

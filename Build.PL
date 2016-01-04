@@ -21,7 +21,6 @@ my $builder = Module::Build::Pluggable->new(
     },
     recursive_test_files => 1,
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? ['t/', 'xt/'] : ['t/'],
-    create_license => 1,
 );
 
 $builder->create_build_script();
